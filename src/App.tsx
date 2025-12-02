@@ -9,6 +9,7 @@ interface VibeOption {
   label: string;
   colorClass: string;
   image: string;
+  textColor: string;
 }
 
 const vibeOptions: VibeOption[] = [
@@ -17,30 +18,35 @@ const vibeOptions: VibeOption[] = [
     label: "I'm the star of today",
     colorClass: "bg-[#1E88E5] hover:bg-[#1976d2]",
     image: "/1.png",
+    textColor: "#0672CC",
   },
   {
     id: "2",
     label: "My brain needs a soft reboot",
     colorClass: "bg-[#00897B] hover:bg-[#00796b]",
     image: "/2.png",
+    textColor: "#0B7C84",
   },
   {
     id: "3",
     label: "An extra boost of energy could help",
     colorClass: "bg-[#7B1FA2] hover:bg-[#6a1b9a]",
     image: "/3.png",
+    textColor: "#66278F",
   },
   {
     id: "4",
     label: "I want the cosy, cuddly stuff",
     colorClass: "bg-[#455A64] hover:bg-[#37474f]",
     image: "/4.png",
+    textColor: "#3F586E",
   },
   {
     id: "5",
     label: "Nothing fancy, just Mumbai OG",
     colorClass: "bg-[#00695C] hover:bg-[#00574b]",
     image: "/5.png",
+    textColor: "#044D53",
   },
 ];
 
@@ -140,21 +146,22 @@ function App() {
     >
       <div className="relative z-10 w-full">
         <div
-          className="mx-auto max-w-[1120px] px-6 md:px-12 "
+          className="mx-auto max-w-[1220px] px-6 md:px-12 "
           style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            marginTop: "455px",
+            marginTop: "600px",
           }}
         >
           <button
             onClick={handleGetStarted}
-            className="inline-flex items-center gap-4 text-black font-semibold shadow-xl bg-[#0672CC] rounded-full "
+            className="inline-flex items-center gap-4 text-white font-bold shadow-xl bg-[#0672CC] rounded-full "
             style={{
               backgroundColor: "#0672CC",
               padding: "24px 90px",
-              fontSize: "clamp(38px, 2.4vw, 30px)",
+              fontSize: "clamp(56px, 2.4vw, 30px)",
+              
             }}
           >
             Let's Begin
@@ -176,31 +183,16 @@ function App() {
     >
       <div className="absolute inset-0"></div>
 
-      <div className="relative z-10 w-full max-w-5xl flex flex-col items-center">
-        {/* Header Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-black text-5xl mb-4">
-            Hey there, chAI explorer!
-          </h1>
-          <p className="text-black text-3xl">
-            Before we pour your perfect cup, tell me — <span className="font-semibold">how are you feeling right now?</span>
-          </p>
-        </div>
-
-        {/* Pick your vibe heading */}
-        <h2 className="text-black text-4xl mb-10">
-          Pick your vibe:
-        </h2>
-
+      <div className="relative z-10 w-full  flex flex-col items-center">
         {/* Buttons Grid */}
-        <div className="w-full max-w-4xl mb-16">
+        <div className="w-full max-w-[1800px] mt-16">
           {/* First row - 3 buttons */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-36 mb-16">
             {vibeOptions.slice(0, 3).map((option) => (
               <button
                 key={option.id}
                 onClick={() => handleVibeSelect(option)}
-                className={`rounded-xl px-8 py-8 text-white text-xl font-semibold shadow-lg transition-transform duration-200 ${option.colorClass} hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-black/20`}
+                className={`rounded-xl px-8 py-4 text-white text-5xl font-semibold shadow-lg transition-transform duration-200 ${option.colorClass} hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-black/20`}
               >
                 {option.label}
               </button>
@@ -208,27 +200,17 @@ function App() {
           </div>
 
           {/* Second row - 2 buttons centered */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-20 max-w-6xl mx-auto">
             {vibeOptions.slice(3, 5).map((option) => (
               <button
                 key={option.id}
                 onClick={() => handleVibeSelect(option)}
-                className={`rounded-xl px-8 py-8 text-white text-xl font-semibold shadow-lg transition-transform duration-200 ${option.colorClass} hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-black/20`}
+                className={`rounded-xl px-8 py-4 text-white text-5xl font-semibold shadow-lg transition-transform duration-200 ${option.colorClass} hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-black/20`}
               >
                 {option.label}
               </button>
             ))}
           </div>
-        </div>
-
-        {/* Footer Text */}
-        <div className="text-center">
-          <h3 className="text-black text-4xl mb-2">
-            Let's chAI-nalyze this!
-          </h3>
-          <p className="text-black text-lg italic">
-            Tap one option to continue.
-          </p>
         </div>
       </div>
     </div>
@@ -252,14 +234,15 @@ function App() {
         <div className="relative z-10 w-full flex items-center justify-center">
           <button
             onClick={handleContinueToResult}
-            className=" text-2xl font-semibold text-white rounded-full shadow-2xl hover:bg-[#1565C0] transition-all duration-200 hover:scale-[1.05] mt-[260px]"
-         style
-            ={{
-              height: "129px",
-              width: "426px",
-              marginTop: "200px"
+            className="text-5xl font-bold bg-white rounded-full shadow-2xl transition-all duration-200"
+            style={{
+              height: "139px",
+              width: "466px",
+              marginTop: "250px",
+              color: selectedVibe.textColor
             }}
           >
+            Get My ChAI
           </button>
         </div>
       </div>
@@ -279,27 +262,27 @@ function App() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="absolute inset-0 bg-white/40"></div>
+        <div className="absolute inset-0 "></div>
 
-        <div className="relative z-10 w-full max-w-4xl text-center">
-          <h1 className="text-black text-5xl font-bold mb-6">
-            Your ChAI is ready to meet its vibe-twin!
-          </h1>
+        <div className="relative z-10 w-full max-w-5xl text-center">
           
-          <p className="text-black text-2xl mb-12 max-w-2xl mx-auto">
-            Enjoy your <span className="font-bold">{teaName || "Signature ChAI Special"}</span> - may your day ba as favorable as your choice
+          
+          <p className="text-black text-5xl mb-12 max-w-5xl mx-auto mt-28">
+            Enjoy your <span className="font-bold">{teaName || "Signature ChAI Special"}</span> - may your day be favorable as your choice
           </p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-6 mt-[150px]">
+          <div className="flex flex-col sm:flex-row justify-center gap-16 mt-[150px]">
             <button
               onClick={handleTryAgain}
-              className="px-16 py-5 text-2xl font-bold text-white bg-[#1976D2] rounded-full shadow-xl hover:bg-[#1565C0] transition-all duration-200 hover:scale-[1.05]"
+              className="text-5xl font-bold text-white bg-[#1976D2] rounded-full shadow-xl hover:bg-[#1565C0] transition-all duration-200 hover:scale-[1.05]"
+              style={{ width: "525px", height: "152px" }}
             >
               Try Again
             </button>
             <button
               onClick={handleHome}
-              className="px-16 py-5 text-2xl font-bold text-white bg-[#0D47A1] rounded-full shadow-xl hover:bg-[#01579B] transition-all duration-200 hover:scale-[1.05]"
+              className="text-5xl font-bold text-white bg-[#0D47A1] rounded-full shadow-xl hover:bg-[#01579B] transition-all duration-200 hover:scale-[1.05]"
+              style={{ width: "525px", height: "152px" }}
             >
               Done
             </button>
