@@ -1,25 +1,31 @@
-const CACHE_NAME = "pwa-cache-v1";
+const CACHE_NAME = "vite-pwa-cache-v1";
 
-const ASSETS = [
-  "/",
-  "/index.html",
-  "/manifest.json",
-  "/icons/icon-192.png",
-  "/icons/icon-512.png"
-];
-
-// Install
-self.addEventListener("install", event => {
+// Pre-cache homepage
+self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(["/"]);
+    })
   );
 });
 
-// Fetch
-self.addEventListener("fetch", event => {
+// Cache all files dynamically
+self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
+    caches.match(event.request).then((cacheRes) => {
+      return (
+        cacheRes ||
+        fetch(event.request)
+          .then((networkRes) => {
+            return caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, networkRes.clone());
+              return networkRes;
+            });
+          })
+          .catch(() => {
+            return caches.match("/");
+          })
+      );
     })
   );
 });
