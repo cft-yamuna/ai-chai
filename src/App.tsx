@@ -151,15 +151,16 @@ function App() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            marginTop: "450px",
+            marginTop: "320px",
+            marginRight: "440px",
           }}
         >
           <button
             onClick={handleGetStarted}
-            className="inline-flex items-center gap-4 text-white font-bold shadow-xl bg-[#0672CC] rounded-full "
+            className="inline-flex items-center gap-4 text-white font-bold shadow-xl bg-[#3F586E]  "
             style={{
-              backgroundColor: "#0672CC",
-              padding: "14px 60px",
+              
+              padding: "6px 40px",
               fontSize: "clamp(46px, 2.4vw, 30px)",
               
             }}
@@ -183,30 +184,43 @@ function App() {
     >
       <div className="absolute inset-0"></div>
 
-      <div className="relative z-10 w-full  flex flex-col items-center">
+      <div className="relative z-10 w-full  flex flex-col items-start">
         {/* Buttons Grid */}
-        <div className="w-full max-w-[1800px] mt-16">
-          {/* First row - 3 buttons */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-36 mb-16">
-            {vibeOptions.slice(0, 3).map((option) => (
+        <div className="w-full max-w-[1800px] ml-72 mt-44">
+          {/* First row - 2 buttons */}
+          <div className="flex flex-col sm:flex-row justify-start gap-6 mb-6">
+            {vibeOptions.slice(0, 2).map((option) => (
               <button
                 key={option.id}
                 onClick={() => handleVibeSelect(option)}
-                className={`rounded-xl px-8 py-4 text-white text-3xl font-semibold shadow-lg transition-transform duration-200 ${option.colorClass} hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-black/20`}
+                className={`px-2 py-4 text-white text-3xl font-semibold shadow-lg transition-transform duration-200 ${option.colorClass} hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-black/20`}
               >
                 {option.label}
               </button>
             ))}
           </div>
 
-          {/* Second row - 2 buttons centered */}
+          {/* Second row - 2 buttons */}
+          <div className="flex flex-col sm:flex-row justify-start gap-6 mb-6">
+            {vibeOptions.slice(2, 4).map((option) => (
+              <button
+                key={option.id}
+                onClick={() => handleVibeSelect(option)}
+                className={`px-2 py-4 text-white text-3xl font-semibold shadow-lg transition-transform duration-200 ${option.colorClass} hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-black/20`}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Third row - 1 button centered */}
           <div className="w-full">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-20">
-              {vibeOptions.slice(3, 5).map((option) => (
+            <div className="flex items-center justify-start">
+              {vibeOptions.slice(4, 5).map((option) => (
                 <button
                   key={option.id}
                   onClick={() => handleVibeSelect(option)}
-                  className={`rounded-xl px-8 py-4 w-[300px] text-white text-3xl font-semibold shadow-lg transition-transform duration-200 ${option.colorClass} hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-black/20`}
+                  className={`px-2 py-4 text-white text-3xl font-semibold shadow-lg transition-transform duration-200 ${option.colorClass} hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-black/20`}
                 >
                   {option.label}
                 </button>
@@ -236,11 +250,12 @@ function App() {
         <div className="relative z-10 w-full flex items-center justify-center">
           <button
             onClick={handleContinueToResult}
-            className="text-5xl font-bold bg-white rounded-full shadow-2xl transition-all duration-200"
+            className="text-5xl font-bold bg-white  transition-all duration-200"
             style={{
               height: "109px",
               width: "406px",
-              marginTop: "200px",
+              marginTop: "260px",
+              marginRight: "330px",
               color: selectedVibe.textColor
             }}
           >
@@ -266,25 +281,25 @@ function App() {
       >
         <div className="absolute inset-0 "></div>
 
-        <div className="relative z-10 w-full max-w-5xl text-center">
+        <div className="relative z-10 w-full  text-start">
           
           
-          <p className="text-black text-5xl mb-12 max-w-5xl mx-auto mt-38">
-            Enjoy your <span className="font-bold">{teaName || "Signature ChAI Special"}</span> - may your day be favorable as your choice
+          <p className="text-white text-4xl mb-12 max-w-5xl ml-68 mt-52 ">
+            Enjoy your <span className="font-bold">{teaName || "Signature ChAI Special"}</span> - may your day be as <br /> favorable as your choice
           </p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-16 mt-[100px]">
+          <div className="flex flex-col sm:flex-row justify-center gap-16 mt-[70px]">
             <button
               onClick={handleTryAgain}
-              className="text-5xl font-bold text-white bg-[#1976D2] rounded-full shadow-xl hover:bg-[#1565C0] transition-all duration-200 hover:scale-[1.05]"
-              style={{ width: "400px", height: "100px" }}
+              className="text-5xl font-bold text-[#3F586E] bg-white  hover:bg-[#1565C0] transition-all duration-200 hover:scale-[1.05]"
+              style={{ width: "350px", height: "100px" }}
             >
               Try Again
             </button>
             <button
               onClick={handleHome}
-              className="text-5xl font-bold text-white bg-[#0D47A1] rounded-full shadow-xl hover:bg-[#01579B] transition-all duration-200 hover:scale-[1.05]"
-              style={{ width: "400px", height: "100px" }}
+              className="text-5xl font-bold text-white bg-[#3F586E]  hover:bg-[#01579B] transition-all duration-200 hover:scale-[1.05]"
+              style={{ width: "350px", height: "100px" }}
             >
               Done
             </button>
